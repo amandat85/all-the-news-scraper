@@ -1,0 +1,51 @@
+//**************************************************
+                //ARTICLE SCHEMA
+//**************************************************/
+
+//Require Mongoose
+const mongoose = require("mongoose")
+
+//Set up Schema constructor in variable
+const Schema = mongoose.Schema
+
+//Article Schema
+//=================================================
+let ArticleSchema = new Schema ({
+    //Title
+    title: {
+        type: String,
+        required: true
+    },
+    //Link
+    link: {
+        type: String,
+        required: true
+    },
+    //Summary
+    summary: {
+        type: String,
+        required: true 
+    },
+    //Image
+    image: {
+        type: String,
+        required: true
+    },
+    //Dept
+    dept: {
+        type: String
+    },
+    //Comment - join
+    comment: {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+    }
+})
+
+//Create Model
+//=================================================
+let Article = mongoose.model("Article", ArticleSchema)
+
+//Exports
+//=================================================
+module.exports = Article
