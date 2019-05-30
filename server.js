@@ -46,7 +46,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Server Static Content
-app.use(express.static("public"));
+app.use(express.static(process.cwd() + "/public/"));
 
 //Configure Routes
 //=================================================

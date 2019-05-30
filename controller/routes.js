@@ -19,7 +19,7 @@ module.exports = (app) => {
 	});
 	//GET Route for scraped articles
 	app.get("/scrape", (req, res) => {
-		axios.get("https://www.cbc.ca/news/canada").then(function (response) {
+		axios.get("https://www.cbc.ca/news").then(function (response) {
 			console.log(response.data)
 
 			// Load the HTML into cheerio
@@ -55,13 +55,13 @@ module.exports = (app) => {
 			})
 			res.send("Scrape Successful")
 			//Scraped articles to show on page load
-			// res.redirect("/")
+			res.redirect("/")
 		})
 	})
 	//GET - get articles from db
 	app.get("/articles", function (req, res) {
 			//allows newer articles to be on top
-			db.Article.find().sort({_id: -1})
+			db.Article.find().sort({_id: -1}).limit(8)
 				//send to handlebars
 				.exec(function(err, doc) {
 					if(err){
