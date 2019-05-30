@@ -2,7 +2,8 @@
 	<div class="nav-wrapper red darken-4">
 		<a href="#" class="brand-logo center">CBC News</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="#">Scrape</a></li>
+			<li><a class="waves-effect waves-light white black-text btn hover" id="scrape" href="/scrape"> Scrape</a>
+			</li>
 			<li><a href="/saved">Saved Articles</a></li>
 		</ul>
 	</div>
@@ -10,25 +11,28 @@
 
 <div class="container">
 	<div class="row">
-		{{#each article}}
-		<div class="col s12 m4">
-			<div class="card">
-				<div class="card-image">
-					{{#unless saved}}
-					<img src="{{image}}">
-					<a class="btn-floating halfway-fab waves-effect waves-light red darken-4"><i
-							class="material-icons">bookmark</i></a>
+		<div class="section">
+			{{#each article}}
+			<div class="col s12 m4">
+				<div class="card">
+					<div class="card-image">
+						{{#unless saved}}
+						<img src="{{image}}">
+						<a class="btn-floating halfway-fab waves-effect waves-light red darken-4"><i
+								class="material-icons">bookmark</i></a>
+					</div>
+					<div class="card-content">
+						<div class="card-title">{{title}}</div>
+						<p>{{summary}}</p>
+					</div>
+					<div class="card-action">
+						<a target="_blank" class="red-text text-darken-4" href="https://www.cbc.ca{{link}}">Link to
+							article</a>
+					</div>
+					{{/unless}}
 				</div>
-				<div class="card-content">
-					<div class="card-title">{{title}}</div>
-					<p>{{summary}}</p>
-				</div>
-				<div class="card-action">
-					<a target="_blank" class="red-text text-darken-4" href="https://www.cbc.ca{{link}}">Link to article</a>
-				</div>
-				{{/unless}}
 			</div>
+			{{/each}}
 		</div>
-		{{/each}}
 	</div>
 </div>

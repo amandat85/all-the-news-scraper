@@ -18,6 +18,7 @@ module.exports = (app) => {
 	app.get("/", function(req, res) {
 		res.redirect("/articles");
 	});
+
 	//GET Route for scraped articles
 	app.get("/scrape", (req, res) => {
 		axios.get("https://www.cbc.ca/news",
@@ -58,9 +59,9 @@ module.exports = (app) => {
 						return res.json(err)
 					})
 			})
-			res.send("Scrape Successful")
+			// res.send("Scrape Successful")
 			//Scraped articles to show on page load
-			res.redirect("/")
+			res.redirect("/articles")
 		})
 	})
 	//GET - get articles from db

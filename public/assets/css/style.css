@@ -1,4 +1,7 @@
+.section {
+    margin-top: 2rem;
+}
 .card {
-    height: 600px;
+    height: 650px;
 }
 
