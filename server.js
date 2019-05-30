@@ -1,5 +1,5 @@
 //**************************************************
-//SERVER
+//                      SERVER
 //**************************************************
 //Require
 //=================================================
@@ -12,6 +12,8 @@ let exphbs = require("express-handlebars");
 let bodyParser = require("body-parser");
 //Morgan
 let logger = require("morgan");
+//Mongoose
+let mongoose = require("mongoose")
 
 //Require Files
 let db = require("./models");
@@ -26,7 +28,8 @@ let app = express();
 
 //Connection
 //=================================================
-let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/cbcPopulater";
+//FIXME - connect to other file than import?
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/cbcScraper";
 mongoose.connect(MONGODB_URI);
 
 //Configure Middleware
@@ -48,9 +51,10 @@ app.use(express.static("public"));
 //Configure Routes
 //=================================================
 //Scrapping articles
-require("./controller/webScrapper")(app);
-//Save articles
-//Comments
+// require("./controller/scrapper")(app)
+// require("./controller/article")(app)
+// require("./controller/comment")(app)
+require("./controller/routes")(app)
 
 // Execution
 //=================================================

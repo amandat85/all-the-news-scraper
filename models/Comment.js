@@ -1,5 +1,5 @@
 //**************************************************
-                //COMMENT SCHEMA
+//                  COMMENT SCHEMA
 //**************************************************/
 
 //Require Mongoose
@@ -11,10 +11,11 @@ const Schema = mongoose.Schema
 //Comment Schema
 //=================================================
 let CommentSchema = new Schema ({
+    //TODO Add later maybe. See if really needed. Most people don't add titles for comments
     //Title
-    title: {
-        type: String,
-    },
+    // title: {
+    //     type: String,
+    // },
     //Link
     body: {
         type: String,

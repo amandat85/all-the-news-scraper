@@ -1,0 +1,35 @@
+<nav>
+	<div class="nav-wrapper red darken-4">
+		<a href="#" class="brand-logo center">CBC World News</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="sass.html">Saved Articles</a></li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col s12 m6">
+			{{#each article}}
+			<div class="card">
+				<div class="card-image">
+					{{#unless saved}}
+					<img src="{{image}}">
+					<a class="btn-floating halfway-fab waves-effect waves-light red"><i
+							class="material-icons">bookmark</i></a>
+				</div>
+				<div class="card-content">
+					<div class="card-title">{{title}}</div>
+					<p>{{summary}}</p>
+				</div>
+				<div class="card-action">
+					<a href="https://www.cbc.ca{{link}}">Link to article</a>
+				</div>
+				{{/unless}}
+
+			</div>
+			{{/each}}
+
+		</div>
+	</div>
+</div>

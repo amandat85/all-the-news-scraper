@@ -1,6 +1,6 @@
 //**************************************************
-                //ARTICLE SCHEMA
-//**************************************************/
+//                  ARTICLE SCHEMA
+//**************************************************/}
 
 //Require Mongoose
 const mongoose = require("mongoose")
@@ -31,9 +31,16 @@ let ArticleSchema = new Schema ({
         type: String,
         required: true
     },
-    //Dept
-    dept: {
-        type: String
+    //TODO readd
+    // //Dept
+    // dept: {
+    //     type: String
+    // },
+     //save is required as a boolean, default false
+    saved: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     //Comment - join
     comment: {
