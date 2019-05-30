@@ -11,12 +11,12 @@
 <div class="container">
 	<div class="row">
 		{{#each article}}
-		<div class="col s12 m6">
+		<div class="col s12 m4">
 			<div class="card">
 				<div class="card-image">
 					{{#unless saved}}
 					<img src="{{image}}">
-					<a class="btn-floating halfway-fab waves-effect waves-light red"><i
+					<a class="btn-floating halfway-fab waves-effect waves-light red darken-4"><i
 							class="material-icons">bookmark</i></a>
 				</div>
 				<div class="card-content">
@@ -24,13 +24,10 @@
 					<p>{{summary}}</p>
 				</div>
 				<div class="card-action">
-					<a target="_blank" href="https://www.cbc.ca{{link}}">Link to article</a>
+					<a target="_blank" class="red-text text-darken-4" href="https://www.cbc.ca{{link}}">Link to article</a>
 				</div>
 				{{/unless}}
-
 			</div>
-			
-
 		</div>
 		{{/each}}
 	</div>

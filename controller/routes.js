@@ -4,8 +4,9 @@
 //Require
 //=================================================
 //Require node modules
-const cheerio = require("cheerio");
-const axios = require("axios");
+const cheerio = require("cheerio")
+//set max content length 50mbs
+const axios = require("axios")
 
 // Require all models
 const db = require("../models");
@@ -19,11 +20,15 @@ module.exports = (app) => {
 	});
 	//GET Route for scraped articles
 	app.get("/scrape", (req, res) => {
-		axios.get("https://www.cbc.ca/news").then(function (response) {
+		axios.get("https://www.cbc.ca/news",
+		{ maxContentLength: 50 * 1000 * 1000 }
+	  )
+		.then(function (response) {
+			
 			console.log(response.data)
-
 			// Load the HTML into cheerio
 			var $ = cheerio.load(response.data);
+			
 
 			// Make an empty array for saving our scraped info
 			var results = {};
@@ -61,7 +66,7 @@ module.exports = (app) => {
 	//GET - get articles from db
 	app.get("/articles", function (req, res) {
 			//allows newer articles to be on top
-			db.Article.find().sort({_id: -1}).limit(8)
+			db.Article.find().sort({_id: -1}).limit(9)
 				//send to handlebars
 				.exec(function(err, doc) {
 					if(err){
