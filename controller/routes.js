@@ -11,7 +11,6 @@ const axios = require("axios")
 // Require all models
 const db = require("../models");
 
-
 //Scraper
 //=================================================
 module.exports = (app) => {
@@ -25,15 +24,11 @@ module.exports = (app) => {
 		{ maxContentLength: 50 * 1000 * 1000 }
 	  )
 		.then(function (response) {
-			
 			console.log(response.data)
 			// Load the HTML into cheerio
 			var $ = cheerio.load(response.data);
-			
-
 			// Make an empty array for saving our scraped info
 			var results = {};
-
 			$("a.card").each((i, element) => {
 				//Headline - Title
 				results.title = $(element).find($("h3.headline")).text();
@@ -49,7 +44,6 @@ module.exports = (app) => {
 				// 	.find($("span.departmentItem"))
 				// 	.text();
 				console.log(results)
-
 				db.Article.create(results)
 					.then((dbArticle) => {
 						console.log(dbArticle)
@@ -86,8 +80,39 @@ module.exports = (app) => {
 	// 		res.json(err);
 	// 	});
 	//GET - get saved articles
+	app.get("/saved", function (req, res) {
+		//Query: in our database, go to the articles collection, 
+		//then "find" every article that is saved (has a saved value of true);
+		db.Article.find({ saved: true }, function (error, result) {
+		  //Log any errors if the server encounters one.
+		  console.log(result)
+		  if (error) {
+			console.log("Error in getting saved articles: " + error);
+		  }
+		  //Otherwise, send the result of this query to the browser.
+		  else {
+			//res.json(result);
+			res.render("saved", {
+			  article: result,
+			});
+		  }
+		});
+	  });
 	//POST - insert new note 
 	//PUT - change articles status to save
+	app.put("/savedarticles/:id", function (req, res) {
+    
+		db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true })
+		.then(function (result) {
+		  console.log("this savedarticle is working");
+		  res.json(result);
+		  
+		})
+		.catch(function (err) {
+		  res.json(err);
+		  console.log("Error in finding saved articles: " + err);
+		});
+	  });
 	//PUT - delete an article from saved by changing its status to saved: false
 
 	//Can add delete note??

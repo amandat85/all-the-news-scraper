@@ -10,7 +10,10 @@
     <!--Icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--CSS-->
@@ -18,8 +21,18 @@
 </head>
 
 <body>
+    <nav>
+	<div class="nav-wrapper red darken-4">
+		<a href="#" class="brand-logo center">CBC News</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a class="waves-effect waves-light white black-text btn hover" id="scrape" href="/scrape">Scrape</a>
+			</li>
+			<li><a href="/saved" id="saved">Saved Articles</a></li>
+		</ul>
+	</div>
+</nav>
     {{{body}}}
-
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>

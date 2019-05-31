@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row">
 		<div class="section">
+			
 			{{#each article}}
+			{{!-- {{#if saved}} --}}
 			<div class="col s12 m4">
 				<div class="card">
 					<div class="card-image">
-				
+					{{#if saved}}
 						<img src="{{image}}">
-						{{!-- //change to button --}}
-						<a class="btn-floating halfway-fab waves-effect waves-light red darken-4" id="saveArticle" data-id="{{_id}}"><i
+						<a class="btn-floating halfway-fab waves-effect waves-light red darken-4"><i
 								class="material-icons">bookmark</i></a>
-							
 					</div>
 					<div class="card-content">
 						<div class="card-title">{{title}}</div>
@@ -20,9 +20,11 @@
 						<a target="_blank" class="red-text text-darken-4" href="https://www.cbc.ca{{link}}">Link to
 							article</a>
 					</div>
-				
+					
 				</div>
 			</div>
+			
+			{{/if}}
 			{{/each}}
 		</div>
 	</div>
