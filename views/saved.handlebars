@@ -1,16 +1,25 @@
 <div class="container">
 	<div class="row">
 		<div class="section">
-			
 			{{#each article}}
-			{{!-- {{#if saved}} --}}
 			<div class="col s12 m4">
+				{{#if saved}}
 				<div class="card">
 					<div class="card-image">
-					{{#if saved}}
 						<img src="{{image}}">
-						<a class="btn-floating halfway-fab waves-effect waves-light red darken-4"><i
-								class="material-icons">bookmark</i></a>
+						<div class="fixed-action-btn horizontal"
+							style="position:relative; float:right; bottom:35px; right:10px">
+							<a class="btn-floating btn-large red darken-4">
+								<i class="large material-icons">menu</i>
+							</a>
+							<ul>
+								<li><a class="btn-floating btn-large red"><i class="material-icons">delete</i></a></li>
+								<li><a class="btn-floating blue  darken-2 btn-large modal-trigger"
+										data-target="modal1"><i class=" material-icons"
+											data-id="{{_id}}">comment</i></a>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<div class="card-content">
 						<div class="card-title">{{title}}</div>
@@ -20,12 +29,42 @@
 						<a target="_blank" class="red-text text-darken-4" href="https://www.cbc.ca{{link}}">Link to
 							article</a>
 					</div>
-					
 				</div>
+				{{/if}}
 			</div>
-			
-			{{/if}}
 			{{/each}}
 		</div>
+	</div>
+</div>
+
+<!--Modal-->
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+	<div class="modal-content">
+		<div class="row">
+			<h4>Insert a Comment</h4>
+			
+			<form class="col s12">
+				<div class="row">
+			<h4>View Comments</h4>
+			  {{#if notes}}
+                    <br>
+                    <br>
+                    <a href='/comments/{{_id}}' class="grey-text text-darken-4 card-title">View Comments<i class="material-icons left">message</i></a>
+                    {{/if}}
+			
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s12">
+						<textarea id="commentInput bodyinput" class="materialize-textarea"></textarea>
+						<label for="textarea1">Comments</label>
+					</div>
+				</div>
+				 
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" id="saveComment" class="modal-close waves-effect waves-green btn-flat">Save</a>
 	</div>
 </div>
