@@ -28,7 +28,6 @@ let app = express();
 
 //Connection
 //=================================================
-//FIXME - connect to other file than import?
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/cbcScraper";
 mongoose.connect(MONGODB_URI);
 
@@ -50,10 +49,6 @@ app.use(express.static(process.cwd() + "/public/"));
 
 //Configure Routes
 //=================================================
-//Scrapping articles
-// require("./controller/scrapper")(app)
-// require("./controller/article")(app)
-// require("./controller/comment")(app)
 require("./controller/routes")(app)
 
 // Execution

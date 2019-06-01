@@ -102,7 +102,7 @@ module.exports = (app) => {
 
 	//CLEAR ALL
 	app.delete("/clear", function (req, res) {
-		db.Article.deleteMany({saved:false})
+		db.Article.deleteMany({})
 		  .then(function (result) {
 			console.log("this article has been deleted");
 			res.json(result);

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CBC Scraper</title>
+    <!--Typography-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <!--Materialize-->
     <!--Icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,23 +19,30 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--CSS-->
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 </head>
 
 <body>
-    <nav>
-	<div class="nav-wrapper red darken-4">
-		<a href="/" class="brand-logo center">CBC News</a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/" class="pull-s7" id="saved">Home</a></li>
-            <li><a class="waves-effect waves-light white black-text btn hover" id="clearAll" href="/"><i class="material-icons left">cloud_download</i>Clear Articles</a>
-			</li>
-			<li><a class="waves-effect waves-light white black-text btn hover" id="scrape" href="/scrape"><i class="material-icons left">cloud_download</i>Scrape</a>
-			</li>
-			<li><a href="/saved" id="saved">Saved Articles</a></li>
-		</ul>
-	</div>
-</nav>
+    <div>
+        <nav>
+            <div class="nav-wrapper red darken-4">
+                <a href="/" class="brand-logo center">CBC News</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/" id="home"><i
+                                class="material-icons">home</i></a></li>
+                                 <li><a id="scrape" href="/scrape"><i
+                                class="material-icons left">cloud_download</i></a>
+                    </li>
+                    <li><a id="clearAll" href="/"><i
+                                class="material-icons left">clear</i></a>
+                    </li>
+                   
+                    <li><a href="/saved" id="saved"><i
+                                class="material-icons left">star</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     {{{body}}}
     <script src="assets/javascript/app.js"></script>
 </body>

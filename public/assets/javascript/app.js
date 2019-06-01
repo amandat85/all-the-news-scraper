@@ -51,12 +51,12 @@ $("body").on("click", "#saveComment", function (event) {
 		method: "POST",
 		url: "/articles/" + thisId,
 		data: {
-			body: $("#bodyinput").val()
+			body: $("#bodyInput").val()
 		}
 	})
 		.then(function (data) {
 			console.log(data);
-			$("#commentInput").empty();
+			// $("#commentInput").val("");
 		})
 		.catch(function (err) {
 			console.log("Error in saving comment in app.js not working: " + err);
