@@ -1,4 +1,4 @@
-//Float icon menu
+//FLOAT ICON MENU
 document.addEventListener('DOMContentLoaded', () => {
 	let elems = document.querySelectorAll('.fixed-action-btn');
 	let instances = M.FloatingActionButton.init(elems, {
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
-//Load Modal
+//LOAD MODAL
 $(document).ready(function () {
 	$('.modal').modal();
 });
@@ -63,7 +63,7 @@ $("body").on("click", "#saveComment", function (event) {
 		});	
 });
 
-//DELETE ARTICLE
+//DELETE ARTICLE FROM SAVED
 $("body").on("click", "#deleteArticle", function (event) {
 	var thisId = $(this).attr("data-id");
 	console.log("article saved with this id: " + thisId);
@@ -79,4 +79,18 @@ $("body").on("click", "#deleteArticle", function (event) {
 		console.log("Error in article app.js not working: " + err);
 	  });
   });
-  
+
+  //CLEAR ALL ARTICLES
+  $("body").on("click", "#clearAll", function (event) {
+	$.ajax({
+	  method: "DELETE",
+	  url: "/clear"
+	})
+	  .then(function (data) {
+		console.log("the article with this id: " + thisId + " was deleted from the database");
+		location.reload();
+	  })
+	  .catch(function (err) {
+		console.log("Error in article app.js not working: " + err);
+	  });
+  });

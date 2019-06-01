@@ -100,6 +100,19 @@ module.exports = (app) => {
 		  });
 	  });
 
+	//CLEAR ALL
+	app.delete("/clear", function (req, res) {
+		db.Article.deleteMany({saved:false})
+		  .then(function (result) {
+			console.log("this article has been deleted");
+			res.json(result);
+		  })
+		  .catch(function (err) {
+			res.json(err);
+			console.log("Error in finding saved articles: " + err);
+		  });
+	  });
+
 //NOTES
 //=================================================
 	//POST COMMENT
