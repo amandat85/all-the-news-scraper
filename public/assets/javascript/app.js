@@ -69,7 +69,7 @@ $("body").on("click", "#deleteArticle", function (event) {
 	console.log("article saved with this id: " + thisId);
 	$.ajax({
 	  method: "DELETE",
-	  url: "/deletearticles/" + thisId,
+	  url: "/delete/" + thisId,
 	})
 	  .then(function (data) {
 		console.log("the article with this id: " + thisId + " was deleted from the database");

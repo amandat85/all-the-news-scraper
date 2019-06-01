@@ -16,7 +16,7 @@ const db = require("../models");
 module.exports = (app) => {
 	//GET SCRAPED ARTICLES
 	app.get("/scrape", (req, res) => {
-		axios.get("https://www.cbc.ca/news/canada",
+		axios.get("https://www.cbc.ca/news",
 			{ maxContentLength: 50 * 1000 * 1000 }
 		)
 			.then((response) => {
@@ -88,7 +88,7 @@ module.exports = (app) => {
 	});
 
 	//DELETE ARTICLE
-	app.delete("/deletearticles/:id", function (req, res) {
+	app.delete("/delete/:id", function (req, res) {
 		db.Article.findOneAndRemove({ _id: req.params.id })
 		  .then(function (result) {
 			console.log("this article has been deleted");
@@ -140,19 +140,18 @@ module.exports = (app) => {
 				res.json(err);
 			});
 	});
-
-
-
-	// app.post("/comments", function (req, res) {
-	// 	// Find all Notes
-	// 	db.Note.find({})
-	// 	  .then(function (dbNote) {
-	// 		// If all Notes are successfully found, send them back to the client
-	// 		res.json(dbNote);
-	// 	  })
-	// 	  .catch(function (err) {
-	// 		// If an error occurs, send the error back to the client
-	// 		res.json(err);
-	// 	  });
-	//   });
+	app.get("/comments/:id", function (req, res) {
+		if (req.params.id) {
+		  db.Comment.find({
+			"article": req.params.id
+		  })
+			.exec(function (error, doc) {
+			  if (error) {
+				console.log(error)
+			  } else {
+				res.send(doc);
+			  }
+			});
+		}
+	  });
 }

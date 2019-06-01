@@ -42,31 +42,15 @@
 <div id="modal1" class="modal">
 	<div class="modal-content">
 		<div class="row">
-			<h4>Insert a Comment</h4>
+			<h5>Insert Comment</h5>
 			<form class="col s12">
 				<div class="row">
 					<div class="input-field col s12">
 						<textarea id="bodyInput" class="materialize-textarea"></textarea>
-						<label for="textarea1">Comments</label>
+						<label for="textarea1" id="commentSize">Comments</label>
 					</div>
 				</div>
 			</form>
-			
-				<div class="row">
-			<h4>View Comments</h4>
-			  {{#if notes}}
-                    <a href='/comments/{{_id}}' class="grey-text text-darken-4 card-title">View Comments<i class="material-icons left">message</i></a>
-                    {{/if}}
-{{!-- 			
-			<form class="col s12">
-				<div class="row">
-					<div class="input-field col s12">
-						<textarea id="commentInput bodyinput" class="materialize-textarea"></textarea>
-						<label for="textarea1">Comments</label>
-					</div>
-				</div>
-				 
-			</form> --}}
 		</div>
 	</div>
 	<div class="modal-footer">
