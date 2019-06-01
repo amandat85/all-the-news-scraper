@@ -13,10 +13,10 @@
 								<i class="large material-icons">menu</i>
 							</a>
 							<ul>
-								<li><a class="btn-floating btn-large red"><i class="material-icons">delete</i></a></li>
-								<li><a class="btn-floating blue  darken-2 btn-large modal-trigger"
-										data-target="modal1"><i class=" material-icons"
-											data-id="{{_id}}">comment</i></a>
+								<li><a class="btn-floating btn-large red" id="deleteArticle" data-id="{{_id}}"><i class="material-icons" >delete</i></a></li>
+								<li><a class="btn-floating blue darken-2 btn-large modal-trigger"
+										data-target="modal1" data-id="{{_id}}"><i class=" material-icons"
+											>comment</i></a>
 								</li>
 							</ul>
 						</div>
@@ -43,16 +43,6 @@
 	<div class="modal-content">
 		<div class="row">
 			<h4>Insert a Comment</h4>
-			
-			<form class="col s12">
-				<div class="row">
-			<h4>View Comments</h4>
-			  {{#if notes}}
-                    <br>
-                    <br>
-                    <a href='/comments/{{_id}}' class="grey-text text-darken-4 card-title">View Comments<i class="material-icons left">message</i></a>
-                    {{/if}}
-			
 			<form class="col s12">
 				<div class="row">
 					<div class="input-field col s12">
@@ -62,6 +52,24 @@
 				</div>
 				 
 			</form>
+			
+				<div class="row">
+			<h4>View Comments</h4>
+			  {{#if notes}}
+                    <br>
+                    <br>
+                    <a href='/comments/{{_id}}' class="grey-text text-darken-4 card-title">View Comments<i class="material-icons left">message</i></a>
+                    {{/if}}
+{{!-- 			
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s12">
+						<textarea id="commentInput bodyinput" class="materialize-textarea"></textarea>
+						<label for="textarea1">Comments</label>
+					</div>
+				</div>
+				 
+			</form> --}}
 		</div>
 	</div>
 	<div class="modal-footer">

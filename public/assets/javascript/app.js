@@ -6,10 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
-
+//Load Modal
 $(document).ready(function () {
 	$('.modal').modal();
 });
+
 //AJAX 
 //=================================================
 //SCRAPE ARTICLES
@@ -25,7 +26,6 @@ $("#scrape").on("click", (event) => {
 });
 
 //SAVE ARTICLES
-//TODO change to ES6 syntax
 $("body").on("click", "#bookmark", function (event) {
 	var thisId = $(this).attr("data-id");
 	console.log($(this))
@@ -33,9 +33,7 @@ $("body").on("click", "#bookmark", function (event) {
 		method: "PUT",
 		url: "/savedarticles/" + thisId,
 	})
-		// With that done
 		.then(function (data) {
-			// Log the response
 			console.log("success")
 			location.reload();
 		})
@@ -44,7 +42,7 @@ $("body").on("click", "#bookmark", function (event) {
 		});
 });
 
-//SAVED COMMENT
+//SAVE COMMENT
 $("body").on("click", "#saveComment", function (event) {
 	console.log(event)
 	var thisId = $(this).attr("data-id");
@@ -62,7 +60,23 @@ $("body").on("click", "#saveComment", function (event) {
 		})
 		.catch(function (err) {
 			console.log("Error in saving comment in app.js not working: " + err);
-		});
-
+		});	
 });
-//Get comment
+
+//DELETE ARTICLE
+$("body").on("click", "#deleteArticle", function (event) {
+	var thisId = $(this).attr("data-id");
+	console.log("article saved with this id: " + thisId);
+	$.ajax({
+	  method: "DELETE",
+	  url: "/deletearticles/" + thisId,
+	})
+	  .then(function (data) {
+		console.log("the article with this id: " + thisId + " was deleted from the database");
+		location.reload();
+	  })
+	  .catch(function (err) {
+		console.log("Error in article app.js not working: " + err);
+	  });
+  });
+  

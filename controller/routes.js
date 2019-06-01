@@ -93,7 +93,6 @@ module.exports = (app) => {
 		  .then(function (result) {
 			console.log("this article has been deleted");
 			res.json(result);
-	
 		  })
 		  .catch(function (err) {
 			res.json(err);
@@ -116,6 +115,7 @@ module.exports = (app) => {
 				res.json(err);
 			});
 	});
+
 	//GET ARTICLES AND POPULATE WITH COMMENT
 	app.get("/articles/:id", function (req, res) {
 		db.Article.findOne({ _id: req.params.id })
