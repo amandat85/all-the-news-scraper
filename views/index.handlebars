@@ -1,3 +1,4 @@
+<!--View Scraped Articles-->
 <div class="container">
 	<div class="row">
 		<div class="section">
@@ -7,14 +8,13 @@
 					<div class="card-image">
 						{{#unless saved}}
 						<img src="{{image}}">
-						<a class="btn-floating  btn-large halfway-fab waves-effect waves-light red darken-4" id="saveArticle"
+						<a class="btn-floating  btn-large halfway-fab waves-effect waves-light red darken-4" id="bookmark"
 							data-id="{{_id}}"><i class="material-icons">bookmark</i></a>
-						{{/unless}}
-						{{#if saved}}
+						{{else}}
 						<img src="{{image}}">
 						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red darken-4" id="saveArticle"
 							data-id="{{_id}}"><i class="material-icons">star</i></a>
-						{{/if}}
+						{{/unless}}
 					</div>
 					<div class="card-content">
 						<div class="card-title">{{title}}</div>
@@ -31,10 +31,3 @@
 		</div>
 	</div>
 </div>
-
-<div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
-    </div>

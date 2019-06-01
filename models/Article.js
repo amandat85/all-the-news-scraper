@@ -15,7 +15,6 @@ let ArticleSchema = new Schema ({
     title: {
         type: String,
         required: true,
-     
     },
     //Link
     link: {
@@ -32,12 +31,6 @@ let ArticleSchema = new Schema ({
         type: String,
         required: true
     },
-    //TODO readd
-    // //Dept
-    // dept: {
-    //     type: String
-    // },
-     //save is required as a boolean, default false
     saved: {
         type: Boolean,
         required: true,
