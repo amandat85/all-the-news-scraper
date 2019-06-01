@@ -46,7 +46,7 @@
 			<form class="col s12">
 				<div class="row">
 					<div class="input-field col s12">
-						<textarea id="bodyinput" class="materialize-textarea"></textarea>
+						<textarea id="bodyInput" class="materialize-textarea"></textarea>
 						<label for="textarea1">Comments</label>
 					</div>
 				</div>
@@ -55,8 +55,6 @@
 				<div class="row">
 			<h4>View Comments</h4>
 			  {{#if notes}}
-                    <br>
-                    <br>
                     <a href='/comments/{{_id}}' class="grey-text text-darken-4 card-title">View Comments<i class="material-icons left">message</i></a>
                     {{/if}}
 {{!-- 			

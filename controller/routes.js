@@ -115,11 +115,23 @@ module.exports = (app) => {
 
 //NOTES
 //=================================================
+	//GET ARTICLES AND POPULATE WITH COMMENT
+	app.get("/articles/:id", function (req, res) {
+		db.Article.findOne({ _id: req.params.id })
+			.populate("comment")
+			.then(function (dbArticle) {
+				res.json(dbArticle);
+			})
+			.catch(function (err) {
+				res.json(err);
+			});
+	});	
+
 	//POST COMMENT
 	app.post("/articles/:id", function (req, res) {
 		db.Comment.create(req.body)
 			.then(function (dbComment) {
-				return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbComment._id }, { new: true });
+				return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
 			})
 			.then(function (dbArticle) {
 				res.json(dbArticle);
@@ -129,15 +141,18 @@ module.exports = (app) => {
 			});
 	});
 
-	//GET ARTICLES AND POPULATE WITH COMMENT
-	app.get("/articles/:id", function (req, res) {
-		db.Article.findOne({ _id: req.params.id })
-			.populate("note")
-			.then(function (dbArticle) {
-				res.json(dbArticle);
-			})
-			.catch(function (err) {
-				res.json(err);
-			});
-	});
+
+
+	// app.post("/comments", function (req, res) {
+	// 	// Find all Notes
+	// 	db.Note.find({})
+	// 	  .then(function (dbNote) {
+	// 		// If all Notes are successfully found, send them back to the client
+	// 		res.json(dbNote);
+	// 	  })
+	// 	  .catch(function (err) {
+	// 		// If an error occurs, send the error back to the client
+	// 		res.json(err);
+	// 	  });
+	//   });
 }
