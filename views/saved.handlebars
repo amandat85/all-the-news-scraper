@@ -8,7 +8,6 @@
 					<div class="card-image">
 						<img src={{image}}>
 							<a class="btn-floating  btn-large halfway-fab waves-effect waves-light black deleteArticle" data-id="{{_id}}"><i class="material-icons">delete</i></a>
-					
 					</div>
 					<div class="card-content">
 						<span class="card-title black-text">{{title}}</span>
@@ -24,9 +23,6 @@
 						<span class="card-title grey-text text-darken-4">{{title}}<i
 								class="material-icons right">close</i></span>
 						<form>
-							{{!-- <div class="input-field col s12">
-								<input placeholder="Name" id="author_name" type="text" name="author">
-							</div> --}}
 							<div class="input-field col s12">
 								<textarea placeholder="Comment" id="content-data" class="materialize-textarea bodyInput"
 									name="content"></textarea>
@@ -46,83 +42,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-{{!-- <div class="container">
-	<div class="row">
-		<div class="section">
-			{{#each article}}
-			<div class="col s12 m4">
-				{{#if saved}}
-				<div class="card">
-					<div class="card-image">
-						<img src="{{image}}">
-						<div class="fixed-action-btn horizontal"
-							style="position:relative; float:right; bottom:35px; right:10px">
-							<a class="btn-floating btn-large red darken-4">
-								<i class="large material-icons">menu</i>
-							</a>
-							<ul>
-								<li><a class="btn-floating btn-large blue darken-2" id="deleteArticle" data-id="{{_id}}"><i class="material-icons" >delete</i></a></li>
-								<li><a class="btn-floating blue darken-2 btn-large modal-trigger"
-										data-target="modal1" data-id="{{_id}}"><i class=" material-icons"
-											>comment</i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="card-content">
-						<div class="card-title">{{title}}</div>
-						<p>{{summary}}</p>
-					</div>
-					<div class="card-action center-align">
-						<a target="_blank" class="btn btn-large red darken-4" href="https://www.cbc.ca{{link}}">Read Article</a>
-					</div>
-					   <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{title}}<i class="material-icons right">close</i></span>
-                        <form action="/articles/{{_id}}" method="POST">
-                            <div class="input-field col s12">
-                                <input placeholder="Name" id="author_name" type="text" name="author">
-                            </div>
-                            <div class="input-field col s12">
-                                <textarea  placeholder="Comment" id="content-data" class="materialize-textarea" name="content"></textarea>
-                            </div>
-                            <button class="btn cyan" type="submit">send</button>
-
-                    {{#if comments}}
-                    <br>
-                    <br>
-                    <a href='/comments/{{_id}}' class="grey-text text-darken-4 card-title">View Comments<i class="material-icons left">message</i></a>
-                    {{/if}}
-                        </form>
-                    </div>
-				</div>
-				{{/if}}
-			</div>
-			{{/each}}
-		</div>
-	</div>
-</div> --}}
-
-<!--Modal-->
-<!-- Modal Structure -->
-{{!-- <div id="modal1" class="modal">
-	<div class="modal-content">
-		<div class="row">
-			<h5>Insert Comment</h5>
-			<form class="col s12">
-				<div class="row">
-					<div class="input-field col s12">
-						<textarea class="materialize-textarea"></textarea>
-						<label for="textarea1" id="commentSize bodyInput">Comments</label>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<a href="#!" class="modal-close waves-effect waves-green btn-flat saveComment">Save</a>
-	</div>
-</div> --}}

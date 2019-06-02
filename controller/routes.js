@@ -5,7 +5,6 @@
 //=================================================
 //Require node modules
 const cheerio = require("cheerio")
-//set max content length 50mbs
 const axios = require("axios")
 
 // Require all models
@@ -18,7 +17,6 @@ module.exports = (app) => {
 	app.get("/scrape", (req, res) => {
 		axios.get("https://www.cbc.ca/news")
 			.then((response) => {
-				console.log(response.data)
 				var $ = cheerio.load(response.data);
 				var results = {};
 				$("a.card").each((i, element) => {
@@ -31,33 +29,26 @@ module.exports = (app) => {
 					//Article Image
 					results.image = $(element).find($("img")).attr("src");
 					// //Article Section
-					console.log(results)
 					db.Article.create(results)
-						.then((dbArticle) => {
-							console.log(dbArticle)
-						})
-						.catch((err) => {
-							console.log("There is a scrape error: " + err)
-							return res.json(err)
-						})
+						.then((dbArticle) => res.json(dbArticle))
+						.catch((err) => res.json(err))
 				})
-				res.redirect('/articles')
+				res.redirect("/articles")
 			})
 	})
 
 	//GET Home
-	app.get('/', (req,res) =>  {
-		res.render('scrape')
-	  })
+	app.get('/', (req,res) => res.render("scrape"))
 
 	//GET ARTICLES FROM DB
 	app.get("/articles", (req, res) => {
 		db.Article.find().sort({ _id: -1 }).limit(6)
 			.exec((err, doc) => {
 				if (err) {
-					console.log(err);
-				} else {
-					var article = { article: doc }
+					res.json(err)
+				} 
+				else {
+					let article = { article: doc }
 					res.render('index', article)
 				}
 			})
@@ -67,7 +58,7 @@ module.exports = (app) => {
 	app.get("/saved", (req, res) => {
 		db.Article.find({ saved: true }, (error, result) => {
 			if (error) {
-				console.log("Error in getting saved articles: " + error);
+				res.json(err)
 			}
 			else {
 				res.render("saved", {
@@ -78,69 +69,43 @@ module.exports = (app) => {
 	})
 
 	//PUT STATUS FROM FALSE TO TRUE
-	app.put("/savedarticles/:id", function (req, res) {
+	app.put("/savedarticles/:id", (req, res) => {
 		db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: true } }, { new: true })
-			.then(function (dbArticle) {
-				console.log("this savedarticle is working");
-				res.json(dbArticle);
-			})
-			.catch(function (err) {
-				res.json(err);
-				console.log("Error in finding saved articles: " + err);
-			});
+			.then((dbArticle) => res.json(dbArticle))
+			.catch((err) => res.json(err))
 	});
 
 	//DELETE ARTICLE
-	app.delete("/delete/:id", function (req, res) {
+	app.delete("/delete/:id",(req, res) => {
 		db.Article.findOneAndRemove({ _id: req.params.id })
-		  .then(function (dbArticle) {
-			console.log("this article has been deleted");
-			res.json(dbArticle);
-		  })
-		  .catch(function (err) {
-			res.json(err);
-			console.log("Error in finding saved articles: " + err);
-		  });
+			.then((dbArticle) => res.json(dbArticle))
+			.catch((err) => res.json(err))
 	  });
 
 	//CLEAR ALL
-	app.delete("/clear", function (req, res) {
+	app.delete("/clear", (req, res) => {
 		db.Article.deleteMany({})
-		  .then(function (dbArticle) {
-			console.log("this article has been deleted");
-			res.json(dbArticle);
-		  })
-		  .catch(function (err) {
-			res.json(err);
-			console.log("Error in finding saved articles: " + err);
-		  });
-	  });
+			.then((dbArticle) => res.json(dbArticle))
+			.catch((err) => res.json(err))
+	  })
 
 //NOTES
 //=================================================
 	//GET ARTICLES AND POPULATE WITH COMMENT
-	app.get("/articles/:id", function (req, res) {
+	app.get("/articles/:id", (req, res) => {
 		db.Article.findOne({ _id: req.params.id })
 			.populate("comment")
-			.then(function (dbArticle) {
-				res.json(dbArticle);
-			})
-			.catch(function (err) {
-				res.json(err);
-			});
-	});	
+			.then((dbArticle) => res.json(dbArticle))
+			.catch((err) => res.json(err))
+		})	
 
 	//POST COMMENT
-	app.post("/articles/:id", function (req, res) {
+	app.post("/articles/:id", (req, res) => {
 		db.Comment.create(req.body)
-			.then(function (dbComment) {
+			.then((dbComment) => {
 				return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
 			})
-			.then(function (dbArticle) {
-				res.json(dbArticle);
-			})
-			.catch(function (err) {
-				res.json(err);
-			});
-	});
+			.then((dbArticle) => res.json(dbArticle))
+			.catch((err) => res.json(err))
+	})
 }
