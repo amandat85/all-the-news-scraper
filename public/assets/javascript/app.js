@@ -24,7 +24,7 @@ $("#scrape").on("click", (event) => {
 	})
 		.then((data) => {
 			console.log(data);
-			location.href = ('/');
+			location.href = ('/scrape');
 		})
 });
 
