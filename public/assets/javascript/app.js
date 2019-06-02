@@ -1,3 +1,6 @@
+//**************************************************
+//            JAVASCRIPT FUNCTIONS
+//**************************************************/
 //FLOAT ICON MENU
 document.addEventListener('DOMContentLoaded', () => {
 	let elems = document.querySelectorAll('.fixed-action-btn');
@@ -26,9 +29,9 @@ $("#scrape").on("click", (event) => {
 });
 
 //SAVE ARTICLES
-$("body").on("click", "#bookmark", function (event) {
-	var thisId = $(this).attr("data-id");
-	console.log($(this))
+$("body").on("click", ".bookmark", function (event) {
+	// alert("article saved")
+	let thisId = $(this).attr("data-id");
 	$.ajax({
 		method: "PUT",
 		url: "/savedarticles/" + thisId,
@@ -43,7 +46,7 @@ $("body").on("click", "#bookmark", function (event) {
 });
 
 //SAVE COMMENT
-$("body").on("click", "#saveComment", function (event) {
+$("body").on("click", ".saveComment", function (event) {
 	console.log(event)
 	var thisId = $(this).attr("data-id");
 	console.log("comment saved");

@@ -5,26 +5,23 @@
 //=================================================
 //Require node modules
 //Express
-let express = require("express");
+const express = require("express");
 //Express-handlebars
-let exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 //Body-Parser
-let bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 //Morgan
-let logger = require("morgan");
+const logger = require("morgan");
 //Mongoose
-let mongoose = require("mongoose")
-
-//Require Files
-let db = require("./models");
+const mongoose = require("mongoose")
 
 //Set Variables
 //=================================================
 //Set Port
-let PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 //Set up App Express
-let app = express();
+const app = express();
 
 //Connection
 //=================================================
@@ -38,7 +35,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 //Configure Morgan
-app.use(logger("dev")); // Use morgan logger for logging requests
+app.use(logger("dev"));
 
 //BodyParser
 app.use(bodyParser.urlencoded({ extended: false }));

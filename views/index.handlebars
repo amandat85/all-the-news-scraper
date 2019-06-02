@@ -8,12 +8,10 @@
 					<div class="card-image">
 						{{#unless saved}}
 						<img src="{{image}}">
-						<a class="btn-floating  btn-large halfway-fab waves-effect waves-light red darken-4" id="bookmark"
-							data-id="{{_id}}"><i class="material-icons">bookmark</i></a>
+						<a class="btn-floating  btn-large halfway-fab waves-effect waves-light red darken-4 bookmark" data-id="{{_id}}"><i class="material-icons">bookmark</i></a>
 						{{else}}
 						<img src="{{image}}">
-						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red darken-4" id="saveArticle"
-							data-id="{{_id}}"><i class="material-icons">star</i></a>
+						<a class="btn-floating btn-large halfway-fab waves-effect waves-light red darken-4 saveArticle" data-id="{{_id}}"><i class="material-icons">star</i></a>
 						{{/unless}}
 					</div>
 					<div class="card-content">
@@ -24,7 +22,6 @@
 						<a target="_blank" class="red-text text-darken-4" href="https://www.cbc.ca{{link}}">Link to
 							article</a>
 					</div>
-
 				</div>
 			</div>
 			{{/each}}

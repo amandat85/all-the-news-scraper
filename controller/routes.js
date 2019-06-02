@@ -16,9 +16,7 @@ const db = require("../models");
 module.exports = (app) => {
 	//GET SCRAPED ARTICLES
 	app.get("/scrape", (req, res) => {
-		axios.get("https://www.cbc.ca/news",
-			{ maxContentLength: 50 * 1000 * 1000 }
-		)
+		axios.get("https://www.cbc.ca/news")
 			.then((response) => {
 				console.log(response.data)
 				var $ = cheerio.load(response.data);
@@ -43,11 +41,17 @@ module.exports = (app) => {
 							return res.json(err)
 						})
 				})
+				res.redirect('/articles')
 			})
 	})
 
+	//GET Home
+	app.get('/', (req,res) =>  {
+		res.render('scrape')
+	  })
+
 	//GET ARTICLES FROM DB
-	app.get("/", (req, res) => {
+	app.get("/articles", (req, res) => {
 		db.Article.find().sort({ _id: -1 }).limit(6)
 			.exec((err, doc) => {
 				if (err) {
@@ -56,7 +60,7 @@ module.exports = (app) => {
 					var article = { article: doc }
 					res.render('index', article)
 				}
-			});
+			})
 	});
 
 	//GET SAVED ARTICLES
@@ -140,18 +144,18 @@ module.exports = (app) => {
 				res.json(err);
 			});
 	});
-	app.get("/comments/:id", function (req, res) {
-		if (req.params.id) {
-		  db.Comment.find({
-			"article": req.params.id
-		  })
-			.exec(function (error, doc) {
-			  if (error) {
-				console.log(error)
-			  } else {
-				res.send(doc);
-			  }
-			});
-		}
-	  });
+	// app.get("/comments/:id", function (req, res) {
+	// 	if (req.params.id) {
+	// 	  db.Comment.find({
+	// 		"article": req.params.id
+	// 	  })
+	// 		.exec(function (error, doc) {
+	// 		  if (error) {
+	// 			console.log(error)
+	// 		  } else {
+	// 			res.send(doc);
+	// 		  }
+	// 		});
+	// 	}
+	//   });
 }
