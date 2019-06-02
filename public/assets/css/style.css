@@ -21,11 +21,19 @@ main {
 }
 
 .card {
-    height: 600px;
+    height: 625px;
 }
 
 #commentSize {
     font-size: 18pt;
+}
+
+.buttonMargin {
+    margin-top: 5px;
+}
+
+.buttonPadding {
+    padding-left: 2.5rem!important;
 }
 
 .fontSize {

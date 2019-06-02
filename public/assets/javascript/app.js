@@ -54,7 +54,7 @@ $("body").on("click", ".saveComment", function (event) {
 		method: "POST",
 		url: "/articles/" + thisId,
 		data: {
-			body: $("#bodyInput").val()
+			body: $(".bodyInput").val()
 		}
 	})
 		.then(function (data) {
@@ -67,7 +67,7 @@ $("body").on("click", ".saveComment", function (event) {
 });
 
 //DELETE ARTICLE FROM SAVED
-$("body").on("click", "#deleteArticle", function (event) {
+$("body").on("click", ".deleteArticle", function (event) {
 	var thisId = $(this).attr("data-id");
 	console.log("article saved with this id: " + thisId);
 	$.ajax({
@@ -84,7 +84,7 @@ $("body").on("click", "#deleteArticle", function (event) {
   });
 
   //CLEAR ALL ARTICLES
-  $("body").on("click", "#clearAll", function (event) {
+  $("body").on("click", ".clearAll", function (event) {
 	$.ajax({
 	  method: "DELETE",
 	  url: "/clear"
