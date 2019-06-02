@@ -66,7 +66,6 @@ module.exports = (app) => {
 	//GET SAVED ARTICLES
 	app.get("/saved", (req, res) => {
 		db.Article.find({ saved: true }, (error, result) => {
-			console.log(result)
 			if (error) {
 				console.log("Error in getting saved articles: " + error);
 			}
@@ -81,9 +80,9 @@ module.exports = (app) => {
 	//PUT STATUS FROM FALSE TO TRUE
 	app.put("/savedarticles/:id", function (req, res) {
 		db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: true } }, { new: true })
-			.then(function (result) {
+			.then(function (dbArticle) {
 				console.log("this savedarticle is working");
-				res.json(result);
+				res.json(dbArticle);
 			})
 			.catch(function (err) {
 				res.json(err);
@@ -94,9 +93,9 @@ module.exports = (app) => {
 	//DELETE ARTICLE
 	app.delete("/delete/:id", function (req, res) {
 		db.Article.findOneAndRemove({ _id: req.params.id })
-		  .then(function (result) {
+		  .then(function (dbArticle) {
 			console.log("this article has been deleted");
-			res.json(result);
+			res.json(dbArticle);
 		  })
 		  .catch(function (err) {
 			res.json(err);
@@ -107,9 +106,9 @@ module.exports = (app) => {
 	//CLEAR ALL
 	app.delete("/clear", function (req, res) {
 		db.Article.deleteMany({})
-		  .then(function (result) {
+		  .then(function (dbArticle) {
 			console.log("this article has been deleted");
-			res.json(result);
+			res.json(dbArticle);
 		  })
 		  .catch(function (err) {
 			res.json(err);
@@ -144,18 +143,4 @@ module.exports = (app) => {
 				res.json(err);
 			});
 	});
-	// app.get("/comments/:id", function (req, res) {
-	// 	if (req.params.id) {
-	// 	  db.Comment.find({
-	// 		"article": req.params.id
-	// 	  })
-	// 		.exec(function (error, doc) {
-	// 		  if (error) {
-	// 			console.log(error)
-	// 		  } else {
-	// 			res.send(doc);
-	// 		  }
-	// 		});
-	// 	}
-	//   });
 }
