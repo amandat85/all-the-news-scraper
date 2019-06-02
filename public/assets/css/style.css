@@ -1,16 +1,35 @@
-#logoSize{
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+#logoSize {
     font-size: 30pt;
 }
+
+.nav-icons {
+    font-size: 35px!important;
+}
+
 .section {
     margin-top: 2rem;
 }
 
 .card {
-    height: 650px;
+    height: 600px;
 }
 
 #commentSize {
     font-size: 18pt;
+}
+
+.fontSize {
+    font-size: 16pt; 
 }
 
 .input-field input[type=text]:focus+label, .materialize-textarea:focus:not([readonly])+label {
