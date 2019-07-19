@@ -4,6 +4,9 @@ A web scrapping application using MongoDB, Mongoose, Axios and Cheerio.
 ## Website
 https://young-lowlands-28521.herokuapp.com/
 
+## Homework Instructions
+[Homework Details](homework_instructions.md)
+
 ## Languages, Tools and Technologies
 
 * HTML 5
