@@ -21,7 +21,7 @@ main {
 }
 
 .card {
-    height: 625px;
+    max-height: 800px;
 }
 
 #commentSize {
